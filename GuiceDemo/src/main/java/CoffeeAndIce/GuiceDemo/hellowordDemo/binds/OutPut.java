@@ -1,4 +1,4 @@
-package CoffeeAndIce.GuiceDemo.hellowordDemo;
+package CoffeeAndIce.GuiceDemo.hellowordDemo.binds;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

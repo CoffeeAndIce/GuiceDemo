@@ -1,4 +1,4 @@
-package CoffeeAndIce.GuiceDemo.hellowordDemo;
+package CoffeeAndIce.GuiceDemo.hellowordDemo.modules;
 
 import com.google.inject.AbstractModule;
 

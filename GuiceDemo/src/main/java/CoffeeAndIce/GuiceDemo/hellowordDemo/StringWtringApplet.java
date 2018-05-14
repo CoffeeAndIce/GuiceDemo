@@ -4,6 +4,8 @@ import javax.inject.Inject;
 
 import com.google.inject.Provider;
 
+import CoffeeAndIce.GuiceDemo.hellowordDemo.binds.OutPut;
+
 public class StringWtringApplet implements MyApplet {
 	private MyDestination destination;
 	private Provider<String> stringProvider;

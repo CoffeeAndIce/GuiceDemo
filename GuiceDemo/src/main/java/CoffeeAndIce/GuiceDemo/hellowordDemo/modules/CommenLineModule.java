@@ -1,10 +1,12 @@
-package CoffeeAndIce.GuiceDemo.hellowordDemo;
+package CoffeeAndIce.GuiceDemo.hellowordDemo.modules;
 
 import java.util.Arrays;
 import java.util.List;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+
+import CoffeeAndIce.GuiceDemo.hellowordDemo.binds.Args;
 
 public class CommenLineModule extends AbstractModule {
 	private final String[] args;
