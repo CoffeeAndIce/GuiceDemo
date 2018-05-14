@@ -10,4 +10,6 @@ Study——Guice-note
 
 
 update:
-helloworld例子命令行輸入優化
+
+1、helloworld例子命令行輸入優化
+2、命令行匹配優化、让不懂Guice的人也能使用代码
