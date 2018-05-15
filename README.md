@@ -13,6 +13,7 @@ Study——Guice-note
 
 （2）绑定
 
+（3）日志AOP封装
 
 tigs:
 比如helloworld ，其核心算法是将指定内容输出至制定目标，而帮助实现这个过程的都叫dependency，都需要提取出来。
