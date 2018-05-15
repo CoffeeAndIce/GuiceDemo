@@ -19,7 +19,7 @@ public class App {
 		Injector injector = Guice.createInjector(
 				new MainModule(),
 				new CommenLineModule(args));
-
+		
 		Applets.get(injector,args).run();
 	}
 

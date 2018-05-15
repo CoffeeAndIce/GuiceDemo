@@ -1,4 +1,4 @@
-package CoffeeIce.GuiceDemo;
+package CoffeeAndIce.GuiceDemo;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

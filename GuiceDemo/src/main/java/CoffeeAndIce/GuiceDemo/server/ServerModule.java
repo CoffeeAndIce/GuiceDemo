@@ -2,13 +2,19 @@ package CoffeeAndIce.GuiceDemo.server;
 
 import javax.inject.Named;
 
+import com.google.common.cache.Cache;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.google.inject.TypeLiteral;
+import com.google.inject.matcher.Matchers;
 import com.google.inject.util.Modules;
 
+import CoffeeAndIce.GuiceDemo.server.impl.GuiceDemoCache;
+import CoffeeAndIce.GuiceDemo.server.impl.Logged;
 import CoffeeAndIce.GuiceDemo.server.impl.OrderServerImpl;
 import CoffeeAndIce.GuiceDemo.server.impl.PaymentServiceImpl;
 import CoffeeAndIce.GuiceDemo.server.impl.PriceServiceImpl;
+import CoffeeAndIce.GuiceDemo.server.impl.SessionId;
 
 public class ServerModule extends AbstractModule {
 
@@ -21,22 +27,25 @@ public class ServerModule extends AbstractModule {
 		bind(OrderService.class).to(OrderServerImpl.class);
 		bind(PaymentService.class).to(PaymentServiceImpl.class);
 		bind(PriceService.class).to(PriceServiceImpl.class);
+		bind(new TypeLiteral<Cache<String,String>>(){})
+			.to(GuiceDemoCache.class);
 		Modules.override(new ChinaModule()).with(new GlobalModule());
-//		bind(new TypeLiteral<List<String>>(){})
-//		.annotatedWith(Names.named("getCurrentTimes"))
-//		.toInstance(Arrays.asList("CNY","ENR","USD"));
-//		 bind(Long.class).annotatedWith(SessionId.class).toInstance(1234L);;//方式一
-		// bind(Long.class).annotatedWith(SessionId.class).toProvider(new
-		// Provider<Long>() {//方式二
-		//
-		// @Override
-		// public Long get() {
-		// return 1234L;
-		// }
-		// });
+		
+		LoggedInterceptor loggedInterceptor = 
+				new LoggedInterceptor();
+		//注入必要参数
+		requestInjection(loggedInterceptor);
+		
+		bindInterceptor(Matchers.any(), 
+				Matchers.annotatedWith(Logged.class),
+				loggedInterceptor );
+
 	}
 
-	@Provides @Named("getCurrentTimes") Long generateSessionId() {// 方式三,名字可以随便起，当且仅当仅一个类型时
+	@Provides @Named("getCurrentTimes") Long getCurrentTimeMillis() {// 方式三,名字可以随便起，当且仅当仅一个类型时
+		return System.currentTimeMillis();
+	}
+	@Provides @SessionId Long generateSessionId() {// 方式三,名字可以随便起，当且仅当仅一个类型时
 		return System.currentTimeMillis();
 	}
 

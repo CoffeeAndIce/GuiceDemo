@@ -26,7 +26,7 @@ public class OrderServerImpl implements OrderService {
 		this.paymentService = paymentService;
 		this.sessionManager = sessionManager;
 	}
-
+	@Override 	@Logged
 	public void sendToPayment(long orderId) {
 		long price = priceService.getPrice(orderId);
 		paymentService.pay(orderId, price, sessionManager.getSessionId());
