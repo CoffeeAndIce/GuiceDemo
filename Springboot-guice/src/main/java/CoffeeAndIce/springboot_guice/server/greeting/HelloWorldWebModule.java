@@ -1,8 +1,6 @@
-package CoffeeAndIce.springboot_guice;
+package CoffeeAndIce.springboot_guice.server.greeting;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Provides;
-import com.google.inject.servlet.ServletModule;
 
 import CoffeeAndIce.GuiceDemo.hellowordDemo.MyApplet;
 import CoffeeAndIce.GuiceDemo.hellowordDemo.MyDestination;
@@ -14,12 +12,11 @@ public class HelloWorldWebModule extends AbstractModule {
 
 	@Override
 	public void configure() {
-		install(new ServletModule());
 		bind(MyApplet.class).to(StringWtringApplet.class);
 		bind(MyDestination.class).to(WebDestination.class);
+		
+		bind(String.class).annotatedWith(OutPut.class)
+		.toProvider(GreetingMessageProvider.class);
 	}
 	
-	@Provides @OutPut String getOutputString(RequestParams requestParams){
-		return requestParams.getMessage();
-	}
 }

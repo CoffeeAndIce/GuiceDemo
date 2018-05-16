@@ -1,4 +1,4 @@
-package CoffeeAndIce.springboot_guice;
+package CoffeeAndIce.springboot_guice.server.persitence;
 
 import org.springframework.stereotype.Component;
 
@@ -10,6 +10,11 @@ import org.springframework.stereotype.Component;
 @Component //componentScan会注册他
 public class SimpleDao {
 	public void save(String data){
-		System.out.println("data:"+data);
+		System.out.println("save:"+data);
 	};
+	
+	public String getPersonData(String name){
+		System.out.println("get person data for:"+name);
+		return name;
+	}
 }

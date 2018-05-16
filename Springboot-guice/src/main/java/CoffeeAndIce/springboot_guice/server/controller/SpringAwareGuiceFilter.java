@@ -1,4 +1,4 @@
-package CoffeeAndIce.springboot_guice;
+package CoffeeAndIce.springboot_guice.server.controller;
 
 import javax.servlet.annotation.WebFilter;
 
