@@ -30,3 +30,7 @@ update:
 <h1>Springboot-guice</h1>
 
 guice与springboot协作时的作用域问题
+
+update:
+
+1、设置作用域为RequestScope及模拟Dao层操作
